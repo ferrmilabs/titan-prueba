@@ -1,0 +1,9 @@
+#
+# automake template for pre/ directory
+#
+# $Id$
+#
+
+noinst_LIBRARIES = libuseful.a
+
+libuseful_a_SOURCES = useful_lib.C useful_lib.h
