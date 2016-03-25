@@ -2423,7 +2423,7 @@ void Element::correct(HashTable* NodeTable, HashTable* El_Table,
       fluxym[i] = nym->flux[i];
     }
 
-#ifdef SUNOS
+//#ifdef SUNOS
   /* the values being passed to correct are for a SINGLE element, NOT a
      region, as such the only change that having variable bedfriction 
      requires is to pass the bedfriction angle for the current element 
@@ -2432,51 +2432,51 @@ void Element::correct(HashTable* NodeTable, HashTable* El_Table,
      I wonder if this is legacy code, it seems odd that it is only called
      for the SUN Operating System zee ../geoflow/correct.f */
 
-#ifdef DO_EROSION
-  int do_erosion=1;
-#else
-  int do_erosion=0;
-#endif
+//#ifdef DO_EROSION
+//  int do_erosion=1;
+//#else
+//  int do_erosion=0;
+//#endif
 
-#ifdef STOPCRIT_CHANGE_SOURCE
-  int IF_STOPPED=stoppedflags;
-#else
-  int IF_STOPPED=!(!stoppedflags);
-#endif
+//#ifdef STOPCRIT_CHANGE_SOURCE
+//  int IF_STOPPED=stoppedflags;
+//#else
+//  int IF_STOPPED=!(!stoppedflags);
+//#endif
 
 
-  double VxVy[2];
-  if(state_vars[0]>GEOFLOW_TINY) {
-    VxVy[0]=state_vars[1]/state_vars[0];
-    VxVy[1]=state_vars[2]/state_vars[0];
-  }
-  else{VxVy[0]=VxVy[1]=0.0;}
+//  double VxVy[2];
+//  if(state_vars[0]>GEOFLOW_TINY) {
+//    VxVy[0]=state_vars[1]/state_vars[0];
+//    VxVy[1]=state_vars[2]/state_vars[0];
+// }
+//  else{VxVy[0]=VxVy[1]=0.0;}
 
-  correct_(state_vars, prev_state_vars, fluxxp, fluxyp, fluxxm, fluxym,
-	   &tiny,&dtdx,&dtdy,&dt,d_state_vars,(d_state_vars+NUM_STATE_VARS), 
-	   &(zeta[0]),&(zeta[1]),curvature,
-	   &(matprops_ptr->intfrict), &effect_bedfrict,
-	   gravity, effect_kactxy, d_gravity, &(matprops_ptr->frict_tiny),
+//  correct_(state_vars, prev_state_vars, fluxxp, fluxyp, fluxxm, fluxym,
+//	   &tiny,&dtdx,&dtdy,&dt,d_state_vars,(d_state_vars+NUM_STATE_VARS),
+//	   &(zeta[0]),&(zeta[1]),curvature,
+//	   &(matprops_ptr->intfrict), &effect_bedfrict,
+//	   gravity, effect_kactxy, d_gravity, &(matprops_ptr->frict_tiny),
 /*           &(matprops_ptr->intfrict), &(matprops_ptr->bedfrict[material]), 
            gravity, kactxy, d_gravity, &(matprops_ptr->frict_tiny), */
-	   forceint,forcebed,&do_erosion,eroded,VxVy, //eval_velocity(0.0,0.0,VxVy),
-	   &IF_STOPPED,Influx);
+//	   forceint,forcebed,&do_erosion,eroded,VxVy, //eval_velocity(0.0,0.0,VxVy),
+//	   &IF_STOPPED,Influx);
 
-  *forceint*=dx[0]*dx[1];
-  *forcebed*=dx[0]*dx[1];
-  *eroded*=dx[0]*dx[1];
+//  *forceint*=dx[0]*dx[1];
+//  *forcebed*=dx[0]*dx[1];
+//  *eroded*=dx[0]*dx[1];
 
 
   //convect the dry line
   //eval_velocity(0.0,0.0,VxVy);
-  if(state_vars[0]>GEOFLOW_TINY) {
-    VxVy[0]=state_vars[1]/state_vars[0];
-    VxVy[1]=state_vars[2]/state_vars[0];
-  }
-  else{VxVy[0]=VxVy[1]=0.0;}
-  convect_dryline(VxVy,dt);
+//  if(state_vars[0]>GEOFLOW_TINY) {
+//    VxVy[0]=state_vars[1]/state_vars[0];
+//    VxVy[1]=state_vars[2]/state_vars[0];
+//  }
+//  else{VxVy[0]=VxVy[1]=0.0;}
+//  convect_dryline(VxVy,dt);
   //convect_dryline(VxVy,0.5*dt);
-#endif 
+//#endif
 
   if(stoppedflags==2) 
     *deposited=state_vars[0]*dx[0]*dx[1];

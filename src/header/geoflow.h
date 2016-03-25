@@ -153,43 +153,43 @@ inline double dabs(double dd) {
 }
   
 /* fortran calls */
-#ifdef SUNOS 
+//#ifdef SUNOS
 //! the actual calculation of k active passive is done by a fortran call this should be ripped out and rewritten as a C++ Element member function
-extern "C" void gmfggetcoef_(double*, double*, double*, double*, double*,
-			     double*, double*, double*, double*, double*);
+//extern "C" void gmfggetcoef_(double*, double*, double*, double*, double*,
+//			     double*, double*, double*, double*, double*);
 
 //! the actual calculation of wave speeds (eigen vectors of the flux jacoboians) is done by a fortran call, this should be ripped out and rewritten as a C++ Element member function
-extern "C" void eigen_(double *Uvec, double *eigenvxmax, double *eigenvymax, 
-		       double *evalue, double *tiny, double *kactxy, 
-		       double *gravity, double *VxVy);
+//extern "C" void eigen_(double *Uvec, double *eigenvxmax, double *eigenvymax,
+//		       double *evalue, double *tiny, double *kactxy,
+//		       double *gravity, double *VxVy);
 
 //! the actual predictor half timestep update (finite difference predictor finite volume corrector) is done by a fortran call, this should be ripped out and rewritten as a C++ Element member function
-extern "C" void predict_(double *Uvec, double *dUdx, double *dUdy, 
-			 double *Uprev, double *tiny, double *kactxy,
-			 double *dt2, double *g, double *curv,
-			 double *bedfrictang, double *intfrictang, 
-			 double *dgdx, double *frict_tiny, int *order_flag, 
-			 double *VxVy, int *if_stopped, double *fluxcoef);
+//extern "C" void predict_(double *Uvec, double *dUdx, double *dUdy,
+//			 double *Uprev, double *tiny, double *kactxy,
+//			 double *dt2, double *g, double *curv,
+//			 double *bedfrictang, double *intfrictang,
+//			 double *dgdx, double *frict_tiny, int *order_flag,
+//			 double *VxVy, int *if_stopped, double *fluxcoef);
 
 //! the actual corrector timestep update (finite difference predictor finite volume corrector) is done by a fortran call, this should be ripped out and rewritten as a C++ Element member function
-extern "C" void correct_(double *Uvec, double *Uprev, double *fluxxp, 
-			 double *fluxyp, double *fluxxm, double *fluxym, 
-			 double *tiny, double *dtdx, double *dtdy, double *dt,
-			 double *dUdx, double *dUdy, double *xslope, 
-			 double *yslope, double *curv, double *intfrictang, 
-			 double *bedfrictang, double *g, double *kactxy, 
-			 double *dgdx, double *frict_tiny, double *forceint, 
-			 double *forcebed, int *do_erosion, double *eroded, 
-			 double *VxVy, int *if_stopped, double *fluxcoef);
-#endif
-#ifdef IBMSP
-extern "C" void gmfggetcoef(double*, double*, double*, double*, double*, 
-			    double*, double*, double*, double*, double*);
-extern "C" void eigen(double *Uvec, double *eigenvxmax, double *eigenvymax, 
-		      double *evalue, double *tiny, double *kactxy, 
-		      double *gravity, double *VxVy);
+//extern "C" void correct_(double *Uvec, double *Uprev, double *fluxxp,
+//			 double *fluxyp, double *fluxxm, double *fluxym,
+//			 double *tiny, double *dtdx, double *dtdy, double *dt,
+//			 double *dUdx, double *dUdy, double *xslope,
+//			 double *yslope, double *curv, double *intfrictang,
+//			 double *bedfrictang, double *g, double *kactxy,
+//			 double *dgdx, double *frict_tiny, double *forceint,
+//			 double *forcebed, int *do_erosion, double *eroded,
+//			 double *VxVy, int *if_stopped, double *fluxcoef);
+//#endif
+//#ifdef IBMSP
+//extern "C" void gmfggetcoef(double*, double*, double*, double*, double*,
+//			    double*, double*, double*, double*, double*);
+//extern "C" void eigen(double *Uvec, double *eigenvxmax, double *eigenvymax,
+//		      double *evalue, double *tiny, double *kactxy,
+//		      double *gravity, double *VxVy);
 
-#endif
+//#endif */
 
 
 #endif

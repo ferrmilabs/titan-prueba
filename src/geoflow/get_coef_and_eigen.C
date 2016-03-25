@@ -110,36 +110,36 @@ double get_coef_and_eigen(HashTable* El_Table, HashTable* NodeTable,
 	  
 	  d_uvec = EmTemp->get_d_state_vars();
 	  dx_ptr = EmTemp->get_dx();
-#ifdef SUNOS
-	  gmfggetcoef_(EmTemp->get_state_vars(), d_uvec, 
-		       (d_uvec+NUM_STATE_VARS), dx_ptr, 
-		       &(matprops_ptr->bedfrict[EmTemp->get_material()]), 
-		       &(matprops_ptr->intfrict), EmTemp->get_kactxy(),
-		       (EmTemp->get_kactxy()+1), &tiny, 
-		       &(matprops_ptr->epsilon));
-	  EmTemp->calc_stop_crit(matprops_ptr);
-	  intswap=EmTemp->get_stoppedflags();
-#ifdef DEBUGINHERE
-	  fprintf(fp,"%d\n",intswap);
-#endif
-	  if((intswap<0)||(intswap>2)) printf("get_coef_and_eigen stopped flag=%d\n",intswap);
+//#ifdef SUNOS
+//	  gmfggetcoef_(EmTemp->get_state_vars(), d_uvec,
+//		       (d_uvec+NUM_STATE_VARS), dx_ptr,
+//		       &(matprops_ptr->bedfrict[EmTemp->get_material()]),
+//		       &(matprops_ptr->intfrict), EmTemp->get_kactxy(),
+//		       (EmTemp->get_kactxy()+1), &tiny,
+//		       &(matprops_ptr->epsilon));
+//	  EmTemp->calc_stop_crit(matprops_ptr);
+//	  intswap=EmTemp->get_stoppedflags();
+//#ifdef DEBUGINHERE
+//	  fprintf(fp,"%d\n",intswap);
+//#endif
+//	  if((intswap<0)||(intswap>2)) printf("get_coef_and_eigen stopped flag=%d\n",intswap);
 	  
 	  //must use hVx/h and hVy/h rather than eval_velocity (L'Hopital's 
 	  //rule speed if it is smaller) because underestimating speed (which 
 	  //results in over estimating the timestep) is fatal to stability...
-	  VxVy[0]=(*(EmTemp->get_state_vars()+1))/
-	    (*(EmTemp->get_state_vars()));
-	  VxVy[1]=(*(EmTemp->get_state_vars()+2))/
-	    (*(EmTemp->get_state_vars()));
+//	  VxVy[0]=(*(EmTemp->get_state_vars()+1))/
+//	    (*(EmTemp->get_state_vars()));
+//	  VxVy[1]=(*(EmTemp->get_state_vars()+2))/
+//	    (*(EmTemp->get_state_vars()));
 
 	  //eigen_(EmTemp->eval_state_vars(u_vec_alt),
-	  eigen_(EmTemp->get_state_vars(),
-		 (EmTemp->get_eigenvxymax()),
-		 (EmTemp->get_eigenvxymax()+1), &evalue, &tiny, 
-		 EmTemp->get_kactxy(), EmTemp->get_gravity(),
-		 VxVy);
+//	  eigen_(EmTemp->get_state_vars(),
+//		 (EmTemp->get_eigenvxymax()),
+//		 (EmTemp->get_eigenvxymax()+1), &evalue, &tiny,
+//		 EmTemp->get_kactxy(), EmTemp->get_gravity(),
+//		 VxVy);
 	  
-#endif
+//#endif *
 	  
 	  //printf("evalue=%g\n",evalue);
 	  

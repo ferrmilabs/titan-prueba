@@ -150,20 +150,20 @@ private(currentPtr,Curr_El,IF_STOPPED,influx,j,k,curr_time,flux_src_coef,VxVy)
 	  IF_STOPPED=!(!(Curr_El->get_stoppedflags()));
 #endif
 
-#ifdef SUNOS
-	  predict_(Curr_El->get_state_vars(), d_uvec, (d_uvec+NUM_STATE_VARS),
-		   Curr_El->get_prev_state_vars(), &tiny, 
-		   Curr_El->get_kactxy(), &dt2, Curr_El->get_gravity(), 
-		   Curr_El->get_curvature(),
-		   &(matprops_ptr->bedfrict[Curr_El->get_material()]), 
-		   &(matprops_ptr->intfrict),
-		   Curr_El->get_d_gravity(), &(matprops_ptr->frict_tiny), 
-		   order_flag, VxVy, 
-		   &IF_STOPPED,influx);
-#endif
-#ifdef IBMSP
+//#ifdef SUNOS
+//	  predict_(Curr_El->get_state_vars(), d_uvec, (d_uvec+NUM_STATE_VARS),
+//		   Curr_El->get_prev_state_vars(), &tiny,
+//		   Curr_El->get_kactxy(), &dt2, Curr_El->get_gravity(),
+//		   Curr_El->get_curvature(),
+//		   &(matprops_ptr->bedfrict[Curr_El->get_material()]),
+//		   &(matprops_ptr->intfrict),
+//		   Curr_El->get_d_gravity(), &(matprops_ptr->frict_tiny),
+//		   order_flag, VxVy,
+//		   &IF_STOPPED,influx);
+//#endif
+//#ifdef IBMSP
 
-#endif
+//#endif
 	  /* apply bc's */
 #ifdef APPLY_BC
 	  for(j=0;j<4;j++)
