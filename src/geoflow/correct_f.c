@@ -29,11 +29,15 @@ C***********************************************************************/
 #include <cmath>
 #include "rnr.h
 
-double correct(double Uvec[3], double Uprev[3], double fluxxp[3], double fluxyp[3], double fluxxm[3],
-		double tiny, double dtdx, double dtdy, double dt, double dUdx[3], double dUdy[3], double xslope,
-		double yslope, double curv[2], duoble intfrictang, double bedfrictang, double g[3], double kactxy,
-		double dgdx[2], double frict_tiny, double forceint, double forcebed, int DO_EROSION, double eroded,
-		double VxVy[2], int IF_STOPPED, double fluxsrc[3])
+void correct_f(double *Uvec, double *Uprev, double *fluxxp,
+			 double *fluxyp, double *fluxxm, double *fluxym,
+			 double *tiny, double *dtdx, double *dtdy, double *dt,
+			 double *dUdx, double *dUdy, double *xslope,
+			 double *yslope, double *curv, double *intfrictang,
+			 double *bedfrictang, double *g, double *kactxy,
+			 double *dgdx, double *frict_tiny, double *forceint,
+			 double *forcebed, int *do_erosion, double *eroded,
+			 double *VxVy, int *if_stopped, double *fluxcoef)
 {
 	double erosion_rate=0.025;
 	double slope;
